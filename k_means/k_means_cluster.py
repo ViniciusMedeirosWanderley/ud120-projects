@@ -65,15 +65,15 @@ plt.show()
 # cluster here; create predictions of the cluster labels
 # for the data and store them to a list called pred
 
-kmeans = KMeans(n_clusters=2).fit(finance_features)
+#kmeans = KMeans(n_clusters=2).fit(finance_features)
 #kmeans = KMeans(n_clusters=3).fit(finance_features)
-pred = kmeans.predict(finance_features)
+#pred = kmeans.predict(finance_features)
 
 
-#min_max_scaler = preprocessing.MinMaxScaler().fit(numpy.array(finance_features, dtype='float'))
-#ff_scaled = min_max_scaler.transform(finance_features)
-#kmeans = KMeans(n_clusters=3).fit(ff_scaled)
-#pred = kmeans.predict(ff_scaled)
+min_max_scaler = preprocessing.MinMaxScaler().fit(numpy.array(finance_features, dtype='float'))
+ff_scaled = min_max_scaler.transform(finance_features)
+kmeans = KMeans(n_clusters=3).fit(ff_scaled)
+pred = kmeans.predict(ff_scaled)
 
 
 #exc_sto_opt = numpy.array([l[1] for l in finance_features if l[1] > 0])
@@ -88,6 +88,6 @@ pred = kmeans.predict(finance_features)
 # so that the figure gets saved to a different file
 try:
     Draw(pred, finance_features, poi, mark_poi=False,
-         name="clusters5.pdf", f1_name=feature_1, f2_name=feature_2)
+         name="clusters6.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print("no predictions object named pred found, no clusters to plot")
